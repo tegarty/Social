@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <link rel="stylesheet" href="{% static 'mysite/css/lib/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'mysite/css/lib/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand ml-5 bigbrand" href="{% url 'homepage' %}">Home Page</a>
+        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Groups</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Create Group</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:logout' %}">Log Out</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Group</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:signup' %}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:login' %}">Log In</a>
+                </li>
+                {% endif %}
+                
+            </ul>
+        </div>
+    </div>
+    </nav>
+    <div class="container mycontent">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <script src="{% static 'mysite/js/lib/jquery-slim.min.js'%}"></script>
+    <script src="{% static 'mysite/js/lib/popper.min.js'%}"></script>
+    <script src="{% static 'mysite/js/lib/bootstrap.min.js'%}"></script>
+
+</body>
+
+</html>
