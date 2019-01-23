@@ -16,7 +16,7 @@ class Group(models.Model):
     members = models.ManyToManyField(User,through='GroupMember')
 
     def __str__(self):
-        self.name
+        return self.name
 
     def save(self,*args,**kwargs):
         self.slug = slugify(self.name)
@@ -34,7 +34,7 @@ class GroupMember(models.Model):
     user = models.ForeignKey(User,related_name='group_users',on_delete=models.CASCADE)
 
     def __str__(self):
-        self.user.username
+        return self.user.username
 
     class Meta:
         unique_together = ('group','user')

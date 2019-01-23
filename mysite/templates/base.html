@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
     <div class="container-fluid">
         <a class="navbar-brand ml-5 bigbrand" href="{% url 'homepage' %}">Home Page</a>
         <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
@@ -22,23 +22,23 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <ul class="navbar-nav ml-auto mr-5 mt-2 mt-lg-0">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Post</a>
+                    <a class="nav-link" href="{% url 'posts:create' %}">Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Groups</a>
+                    <a class="nav-link" href="{% url 'groups:all' %}">Groups</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Create Group</a>
+                    <a class="nav-link" href="{% url 'groups:create' %}">Create Group</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:logout' %}">Log Out</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Group</a>
+                    <a class="nav-link" href="{% url 'groups:all' %}">Group</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:signup' %}">Sign Up</a>
